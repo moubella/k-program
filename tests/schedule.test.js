@@ -37,6 +37,14 @@ test("phaseForWeek picks the last phase that has started", () => {
   assert.equal(phaseForWeek(phases, 40).sets, 3);
 });
 
+test("phaseForWeek falls back to the earliest phase if none has started yet", () => {
+  const phases = [
+    { fromWeek: 4, sets: 3, cardioMinutes: 15 },
+    { fromWeek: 2, sets: 2, cardioMinutes: 10 },
+  ];
+  assert.equal(phaseForWeek(phases, 1).sets, 2);
+});
+
 test("nextSessionId rotates A → B → C → A", () => {
   const ids = ["A", "B", "C"];
   assert.equal(nextSessionId(ids, null), "A");
