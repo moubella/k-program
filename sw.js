@@ -9,6 +9,7 @@ const ASSETS = [
   "./program.json",
   "./manifest.webmanifest",
   "./js/app.js",
+  "./js/program.js",
   "./js/render.js",
   "./js/schedule.js",
   "./js/storage.js",
