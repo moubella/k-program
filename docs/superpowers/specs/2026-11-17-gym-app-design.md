@@ -14,6 +14,7 @@ Success looks like: she opens the app in the gym, gets to today's session in one
 - A fixed beginner program: 3 sessions (A, B, C), done in order, 3 times a week.
 - Each session fits in about 60 minutes: warm-up, 5 exercises, short cardio finisher.
 - The app tells her which exercises to do (sets, reps, rest), nothing more.
+- The app knows which week of the program she's in and always shows the exact numbers for that week (lighter first 2 weeks, then the full program), so she never has to adjust anything in her head.
 - Feels like an app on her iPhone: icon on the home screen, opens full screen, works with no signal in the gym.
 - Changing the program means editing one data file, without touching the app code.
 
@@ -36,6 +37,7 @@ Success looks like: she opens the app in the gym, gets to today's session in one
 ## Constraints
 
 - Mobile first, iPhone Safari. Must be usable one-handed with sweaty fingers: big tap targets, large readable text.
+- All text in English: exercise names, tips, labels, dates.
 - No framework, no build step, no dependencies: plain HTML, CSS and JavaScript.
 - Must be served over HTTPS (needed for offline support), from a free static host.
 - Assumes a standard commercial gym: dumbbells, cable machine, Smith machine, leg press, leg curl, hip abduction machine, lat pulldown, seated row, chest press, 45° back extension bench, treadmill / bike / stairmaster. Every exercise has an alternative in case a machine is missing or taken.
@@ -63,9 +65,11 @@ Success looks like: she opens the app in the gym, gets to today's session in one
 |---|---|---|
 | Warm-up | ~10 min | 5 min easy bike or treadmill walk, then 2 rounds of 10 glute bridges + 10 bodyweight squats |
 | 5 exercises | ~40 min | Sets × reps and rest as listed below |
-| Cardio finisher | 10–15 min | Incline treadmill walk (incline 8–12%, 4.5–5.5 km/h), or stairmaster, or bike. 10 min in weeks 1–2, then 15 min |
+| Cardio finisher | 10–15 min | Incline treadmill walk (incline 8–12%, 4.5–5.5 km/h), or stairmaster, or bike. 10 min in weeks 1–2, then 15 min (the app shows the right one for the current week) |
 
 Overall the week is lower-body dominant: 10 of the 15 exercises train glutes/legs, 4 train the upper body, 1 trains the core.
+
+The tables below show the full program (week 3 onwards). In weeks 1–2 every exercise is done for 2 sets instead of 3; the app shows "2 ×" automatically during those weeks (see Progression).
 
 ### Session A — Glutes & hamstrings
 
@@ -101,13 +105,14 @@ Hip thrust appears in A and C on purpose: it is the best glute exercise, and doi
 
 ### Progression
 
-- **Weeks 1–2:** 2 sets of each exercise instead of 3, light weights, focus on learning the movements. Cardio finisher 10 min.
+- **Weeks 1–2 ("learning weeks"):** 2 sets of each exercise instead of 3, light weights, focus on learning the movements. Cardio finisher 10 min.
 - **From week 3:** 3 sets as written, cardio finisher 15 min.
+- The app switches between these by itself, counting weeks from her start date (see The app → Week counting).
 - **Picking a weight:** the last 2 reps of each set should feel hard, but with clean form.
 - **Going up:** when she reaches the top of the rep range on every set with good form, she uses the next weight up the following session.
 - **After 8–12 weeks:** the program gets refreshed by editing the data file (new exercises or more volume).
 
-### Safety notes (shown once, short)
+### Safety notes (a short block at the bottom of Home)
 
 - Sharp or joint pain means stop that exercise; muscle soreness 1–2 days after a session is normal in the first weeks.
 - For the first session, ask gym staff to show how to set up the machines (most gyms offer a free intro).
@@ -119,16 +124,17 @@ Hip thrust appears in A and C on purpose: it is the best glute exercise, and doi
 
 Two screens.
 
-**Home** — the three sessions, with the next one highlighted:
+**Home** — the current week, the three sessions with the next one highlighted, and a few short notes:
 
 ```
 ┌───────────────────────────────┐
 │ K Program                     │
-│ 3 sessions a week, in order   │
+│ Week 2 · learning weeks       │
+│ Light weights, focus on form  │
 │                               │
 │ ┌───────────────────────────┐ │
 │ │ A · Glutes & hamstrings   │ │
-│ │ last done Mon 16 Nov      │ │
+│ │ last done Mon 30 Nov      │ │
 │ └───────────────────────────┘ │
 │ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ │
 │ ┃ NEXT UP                   ┃ │
@@ -139,32 +145,38 @@ Two screens.
 │ │ C · Glutes & full body    │ │
 │ └───────────────────────────┘ │
 │                               │
-│ Weeks 1–2: 2 sets per exercise│
+│ 3 sessions a week, in order   │
 │ Rest days: 30 min walk        │
+│                               │
+│ SAFETY                        │
+│ Sharp or joint pain: stop     │
+│ Soreness for 1–2 days: normal │
+│ Ask staff to show the machines│
 └───────────────────────────────┘
 ```
 
-**Session** — everything for that session on one scrolling page:
+**Session** — everything for that session on one scrolling page, with the numbers for the current week (here week 2, so 2 sets and 10 min of cardio):
 
 ```
 ┌───────────────────────────────┐
 │ ‹ Back                        │
 │ A · Glutes & hamstrings       │
+│ Week 2                        │
 │                               │
 │ WARM-UP · 10 min              │
 │ 5 min bike, then 2 rounds of  │
 │ 10 glute bridges + 10 squats  │
 │                               │
 │ 1  Hip thrust                 │
-│    3 × 10–12 · rest 90 s      │
+│    2 × 10–12 · rest 90 s      │
 │    Squeeze glutes at the top  │
 │    Busy? Dumbbell glute bridge│
 │                               │
 │ 2  Dumbbell Romanian deadlift │
-│    3 × 10–12 · rest 90 s      │
+│    2 × 10–12 · rest 90 s      │
 │    …                          │
 │                               │
-│ CARDIO · 10–15 min            │
+│ CARDIO · 10 min               │
 │ Incline walk 8–12%, 5 km/h    │
 │                               │
 │ ┌───────────────────────────┐ │
@@ -179,8 +191,18 @@ Two screens.
 - Tapping a session opens its page. "‹ Back" returns to Home.
 - "I'm done" records which session she finished and the date, then returns to Home with the next session highlighted.
 - That record (last session id + date) is the only thing the app stores, in the phone's local storage. If storage is unavailable or cleared, the app still works; it just highlights A.
-- The home-screen notes (weeks 1–2, rest days, safety) come from the program file.
+- The home-screen notes (rest days, safety) come from the program file.
 - Supports light and dark mode (follows the phone setting).
+
+### Week counting
+
+- The program file holds her **start date** (the day of her first session) and a short list of **phases**. Each phase starts at a given week and sets the number of sets per exercise, the cardio duration, and an optional one-line message:
+  - Phase 1, from week 1: 2 sets, 10 min cardio, message "Learning weeks: light weights, focus on form".
+  - Phase 2, from week 3: 3 sets, 15 min cardio, no message.
+- Current week = number of full 7-day blocks since the start date, plus 1, using the phone's local date. A start date in the future shows week 1.
+- Home shows "Week N" plus the current phase's message (if any). The session page shows "Week N" and the sets and cardio minutes for the current phase. Reps, rest, tips and alternatives come from each exercise and do not change with the phase.
+- The week is computed from the date every time the app opens; nothing extra is stored on the phone, so the only stored state is still the last finished session.
+- Refreshing the program later (after 8–12 weeks) can mean adding a phase or editing exercises in the same file.
 
 ### Files
 
@@ -197,10 +219,15 @@ Shape of `program.json` (illustrative; exact fields are the builder's call):
 ```json
 {
   "title": "K Program",
-  "notes": ["Weeks 1–2: 2 sets per exercise", "Rest days: 30 min walk"],
+  "startDate": "2026-11-23",
+  "phases": [
+    { "fromWeek": 1, "sets": 2, "cardioMinutes": 10, "message": "Learning weeks: light weights, focus on form" },
+    { "fromWeek": 3, "sets": 3, "cardioMinutes": 15 }
+  ],
+  "notes": ["3 sessions a week, in order", "Rest days: 30 min walk"],
   "safety": ["Sharp or joint pain: stop that exercise", "..."],
   "warmup": "5 min bike or treadmill, then 2 rounds of 10 glute bridges + 10 bodyweight squats",
-  "cardio": "Incline treadmill walk 8–12%, 4.5–5.5 km/h (or stairmaster / bike) — 10 min weeks 1–2, then 15 min",
+  "cardio": "Incline treadmill walk 8–12%, 4.5–5.5 km/h (or stairmaster / bike)",
   "sessions": [
     {
       "id": "A",
@@ -208,7 +235,6 @@ Shape of `program.json` (illustrative; exact fields are the builder's call):
       "exercises": [
         {
           "name": "Hip thrust (machine, or Smith machine)",
-          "sets": "3",
           "reps": "10–12",
           "rest": "90 s",
           "tip": "Chin tucked, push through the heels, squeeze the glutes 1 s at the top",
@@ -236,9 +262,17 @@ Any free static host with HTTPS. GitHub Pages is simplest if the repo can be pub
 
 - Web app saved to the home screen, plain HTML/CSS/JS, no build, no dependencies.
 - 3 sessions A/B/C in rotation, ~60 min each, contents as in the tables above.
-- Two screens (Home, Session); only state is the last finished session.
+- Two screens (Home, Session); only stored state is the last finished session.
 - Program lives in one data file separate from the code.
 - Works offline.
+- English throughout.
+- The app counts the weeks from a start date in the program file and shows the right sets and cardio minutes for the current phase (2 sets / 10 min in weeks 1–2, then 3 sets / 15 min).
+
+**Calls made during review (easy to change):**
+
+- Start date lives in the program file, not saved on the phone, so the app stores nothing extra; the start date gets set to her first gym day before deploying.
+- The safety notes are a small always-visible block at the bottom of Home.
+- Phases set one sets count for every exercise; per-exercise overrides are not needed for this program.
 
 **Left to the builder:**
 
@@ -247,4 +281,4 @@ Any free static host with HTTPS. GitHub Pages is simplest if the repo can be pub
 - Service-worker caching strategy, as long as offline works and program updates arrive.
 - One file vs. separate CSS/JS files.
 - Icon design.
-- How to check the app before handing it over (at minimum: install on an iPhone, test in airplane mode, run through "I'm done" for A → B → C → A).
+- How to check the app before handing it over (at minimum: install on an iPhone, test in airplane mode, run through "I'm done" for A → B → C → A, and check week 1, week 2 → week 3 switch, and a future start date — e.g. via a way to fake today's date while testing).
