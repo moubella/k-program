@@ -1,0 +1,14 @@
+{
+  "name": "K Program",
+  "short_name": "K Program",
+  "description": "Your 3-session gym program: what to do today.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fdf7f8",
+  "theme_color": "#c93f6d",
+  "icons": [
+    { "src": "icons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
