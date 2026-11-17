@@ -1,0 +1,147 @@
+{
+  "title": "K Program",
+  "startDate": "2026-11-23",
+  "sessionMinutes": 60,
+  "phases": [
+    { "fromWeek": 1, "sets": 2, "cardioMinutes": 10, "message": "Learning weeks: light weights, focus on form" },
+    { "fromWeek": 3, "sets": 3, "cardioMinutes": 15 }
+  ],
+  "notes": [
+    "3 sessions a week, in order",
+    "Rest days: 30 min walk"
+  ],
+  "safety": [
+    "Sharp or joint pain: stop that exercise",
+    "Muscle soreness for 1–2 days after a session is normal in the first weeks",
+    "First session: ask gym staff to show you how to set up the machines",
+    "Injury or health condition? Check with a doctor before starting"
+  ],
+  "warmupMinutes": 10,
+  "warmup": "5 min easy bike or treadmill walk, then 2 rounds of 10 glute bridges + 10 bodyweight squats",
+  "cardio": "Incline treadmill walk (incline 8–12%, 4.5–5.5 km/h), or stairmaster, or bike",
+  "sessions": [
+    {
+      "id": "A",
+      "name": "Glutes & hamstrings",
+      "exercises": [
+        {
+          "name": "Hip thrust (machine, or Smith machine)",
+          "reps": "10–12",
+          "rest": "90 s",
+          "tip": "Chin tucked, push through the heels, squeeze the glutes 1 s at the top",
+          "alt": "Dumbbell glute bridge on the floor"
+        },
+        {
+          "name": "Dumbbell Romanian deadlift",
+          "reps": "10–12",
+          "rest": "90 s",
+          "tip": "Soft knees, push the hips back, dumbbells slide down the thighs, back flat",
+          "alt": "Cable pull-through"
+        },
+        {
+          "name": "Seated leg curl (machine)",
+          "reps": "12",
+          "rest": "60 s",
+          "tip": "Control the weight on the way back (2–3 s)",
+          "alt": "Lying leg curl machine"
+        },
+        {
+          "name": "Cable glute kickback",
+          "reps": "12 per leg",
+          "rest": "45 s",
+          "tip": "Hips square, kick back and slightly out, don't arch the lower back",
+          "alt": "Donkey kicks on the floor"
+        },
+        {
+          "name": "Hip abduction machine",
+          "reps": "15",
+          "rest": "45 s",
+          "tip": "Lean slightly forward to feel it in the glutes",
+          "alt": "Side-lying leg raises"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Legs & back",
+      "exercises": [
+        {
+          "name": "Goblet squat",
+          "reps": "10–12",
+          "rest": "90 s",
+          "tip": "Dumbbell held at the chest, sit down between the heels, knees follow the toes",
+          "alt": "Bodyweight squat to a bench"
+        },
+        {
+          "name": "Leg press, feet high and wide",
+          "reps": "12",
+          "rest": "90 s",
+          "tip": "Feet high and wide works the glutes more; never lock the knees; lower back stays on the pad",
+          "alt": "Dumbbell step-up onto a bench"
+        },
+        {
+          "name": "Lat pulldown",
+          "reps": "10–12",
+          "rest": "60 s",
+          "tip": "Pull the bar to the upper chest, elbows down toward the hips, chest up",
+          "alt": "Assisted pull-up machine"
+        },
+        {
+          "name": "Seated cable row",
+          "reps": "10–12",
+          "rest": "60 s",
+          "tip": "Sit tall, pull the handle to the belly, squeeze the shoulder blades together",
+          "alt": "Seated row machine"
+        },
+        {
+          "name": "Plank",
+          "reps": "20–30 s",
+          "rest": "45 s",
+          "tip": "Elbows under the shoulders, squeeze the glutes, don't let the hips sag",
+          "alt": "Plank on the knees"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Glutes & full body",
+      "exercises": [
+        {
+          "name": "Hip thrust (machine, or Smith machine)",
+          "reps": "10–12",
+          "rest": "90 s",
+          "tip": "Chin tucked, push through the heels, squeeze the glutes 1 s at the top",
+          "alt": "Dumbbell glute bridge on the floor"
+        },
+        {
+          "name": "Dumbbell reverse lunge",
+          "reps": "10 per leg",
+          "rest": "90 s",
+          "tip": "Step back, front knee over the middle of the foot, push through the front heel to stand",
+          "alt": "Static split squat, holding something for balance"
+        },
+        {
+          "name": "45° back extension, glute focus",
+          "reps": "12",
+          "rest": "60 s",
+          "tip": "Feet turned out, upper back slightly rounded, lift with the glutes, stop at a straight line",
+          "alt": "Cable pull-through"
+        },
+        {
+          "name": "Chest press machine",
+          "reps": "10–12",
+          "rest": "60 s",
+          "tip": "Handles at mid-chest height, push without locking the elbows",
+          "alt": "Incline push-ups on a bench"
+        },
+        {
+          "name": "Seated dumbbell shoulder press",
+          "reps": "10–12",
+          "rest": "60 s",
+          "tip": "Back against the pad, press up without arching",
+          "alt": "Shoulder press machine"
+        }
+      ]
+    }
+  ]
+}
