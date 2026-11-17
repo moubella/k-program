@@ -1,7 +1,7 @@
 # K Program — gym app design
 
 - **Date:** 2026-11-17
-- **Status:** draft, waiting for approval
+- **Status:** approved (2026-11-17)
 
 ## Why
 
