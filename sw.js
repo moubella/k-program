@@ -33,32 +33,44 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+const looksLikeProgram = (data) =>
+  Array.isArray(data?.sessions) && data.sessions.length > 0 && Array.isArray(data?.phases) && data.phases.length > 0;
+
+// Fetches program.json and caches it only if it is a usable program, so a broken
+// edit (or a host's HTML error page served with status 200) never replaces the
+// last good copy. cache: "no-cache" revalidates instead of trusting the HTTP cache.
+async function fetchGoodProgram(request, cache) {
+  const response = await fetch(request.url, { cache: "no-cache" });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  if (!looksLikeProgram(await response.clone().json())) throw new Error("not a program");
+  await cache.put(request, response.clone());
+  return response;
+}
+
 // program.json: try the network for a few seconds (fresh program), else the cache.
 async function programNetworkFirst(request) {
   const cache = await caches.open(CACHE);
-  // cache: "no-cache" revalidates with the server instead of trusting the HTTP cache.
-  const fromNetwork = fetch(request.url, { cache: "no-cache" }).then((response) => {
-    if (response.ok) cache.put(request, response.clone());
-    return response;
-  });
+  const fromNetwork = fetchGoodProgram(request, cache);
   fromNetwork.catch(() => {}); // a late failure after the timeout is not an error
-  const timeout = new Promise((resolve) => setTimeout(resolve, PROGRAM_TIMEOUT_MS));
+  let timer;
+  const timeout = new Promise((resolve) => (timer = setTimeout(resolve, PROGRAM_TIMEOUT_MS)));
   try {
     const response = await Promise.race([fromNetwork, timeout]);
-    if (response && response.ok) return response;
+    if (response) return response;
   } catch {
-    // Offline: fall through to the cache.
+    // Offline, or the server's program is broken: use the last good copy.
+  } finally {
+    clearTimeout(timer);
   }
-  return (await cache.match(request)) || fromNetwork;
+  return (await cache.match(request)) || fetch(request.url, { cache: "no-cache" });
 }
 
-// Page loads (including ?today=… test URLs) fall back to the cached page offline.
+// Page loads (including ?today=… test URLs) come straight from the cache, so the
+// app opens instantly even with one bar of signal; code updates arrive through a
+// CACHE bump. "./" is used, never "./index.html": some hosts redirect /index.html
+// to /, and a redirected response cannot be used for a page load.
 async function navigation(request) {
-  try {
-    return await fetch(request);
-  } catch {
-    return caches.match("./index.html", { ignoreSearch: true });
-  }
+  return (await caches.match("./", { ignoreSearch: true })) || fetch(request);
 }
 
 async function cacheFirst(request) {
