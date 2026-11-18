@@ -1,7 +1,7 @@
 # K Program v2 — exercise images (draft plan)
 
 - **Date:** 2026-11-18
-- **Status:** draft, not started — open questions at the bottom
+- **Status:** decisions made (2026-11-18), not started
 
 ## Why
 
@@ -47,9 +47,11 @@ v1 describes each exercise in text only (name, sets × reps, a one-line tip). Fo
 6. **Offline:** cache images in `sw.js`, bump `CACHE` to `kprogram-v2`; extend `tests/pwa.test.js` and `tests/sw.test.js`.
 7. **Browser check + deploy:** headless check (images load, no layout overflow, works offline), push to `main` → Vercel redeploys; check on her iPhone.
 
-## Open questions
+## Decisions (2026-11-18)
 
-1. **Animated loop or still images?** Recommendation: animated 2-frame loop where available, still otherwise.
-2. **Where the visual goes:** big at the top of each exercise card (recommended), or a small thumbnail that opens full screen on tap?
-3. **Gaps:** if a few exercises (likely candidates: 45° back extension glute focus, cable glute kickback, hip abduction machine) have no good public-domain photos, is text-only acceptable for those in v2, or should we do custom illustrations?
-4. **Also show images for the alternatives** ("Busy? …")? Recommendation: not in v2.
+1. **Animated:** 2-frame animated loop for every exercise (start ↔ end position), with a reduced-motion still.
+2. **Placement:** the visual sits at the top of each exercise card, full card width.
+3. **Gaps:** when free-exercise-db has no good photo pair for an exercise, make a custom illustration instead of leaving it text-only. Custom illustrations are 2-frame SVG figures in one flat, consistent style (same frame, colours from `style.css`, so they also work in dark mode), drawn to match the exercise's tip (e.g. hip height and back angle). Each one is checked against the form cue before it ships; a doubtful one is flagged for review rather than guessed.
+4. **Alternatives:** no images for the "Busy? …" alternatives in v2.
+
+Task 2 therefore becomes: draw the custom 2-frame SVG for each gap found in task 1.
