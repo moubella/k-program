@@ -19,6 +19,7 @@ v1 describes each exercise in text only (name, sets × reps, a one-line tip). Fo
 - Video with sound, full tutorials, or YouTube embeds (need signal, heavy, ads).
 - Images for the alternatives ("Busy? …") — the main exercise only in v2.
 - Changing the program itself.
+- Workout history: planned for v3, stored on the phone in IndexedDB (no server database).
 
 ## Approaches
 
