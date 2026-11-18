@@ -1,0 +1,6 @@
+# Only the app is published; keep notes, tests and tooling off the public site.
+docs
+tests
+.superpowers
+README.md
+package.json

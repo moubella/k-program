@@ -62,9 +62,12 @@ Everything is in `program.json`:
 
 From then on it opens full screen from its icon and works in airplane mode.
 
-## Hosting
+## Hosting (Vercel)
 
-Any free static host with HTTPS works; all paths are relative, so it can live under a sub-path like `/k-program/`.
+The app is hosted on Vercel's free Hobby plan; the GitHub repo can stay private.
 
-- **GitHub Pages**: Settings → Pages → Deploy from a branch → `main` / root. Free only if the repository is public.
-- **Netlify** or **Cloudflare Pages**: connect the repository (can stay private), no build command, publish directory = repository root.
+1. On vercel.com: **Add New → Project → Import** the `k-program` GitHub repo.
+2. Framework preset: **Other**. Leave the build command empty. Output directory: the repository root.
+3. Deploy. Every push to `main` redeploys automatically.
+
+`.vercelignore` keeps `docs/`, `tests/`, `README.md` and `package.json` off the public site, so only the app files are published.
