@@ -1,6 +1,6 @@
 {
   "title": "K Program",
-  "startDate": "2026-11-23",
+  "startDate": "2026-11-29",
   "sessionMinutes": 60,
   "phases": [
     { "fromWeek": 1, "sets": 2, "cardioMinutes": 10, "message": "Learning weeks: light weights, focus on form" },
