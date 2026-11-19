@@ -9,7 +9,10 @@ const isTextList = (value) => Array.isArray(value) && value.every(isText);
 const isNonEmptyList = (value, isItem) => Array.isArray(value) && value.length > 0 && value.every(isItem);
 
 const isPhase = (p) => p !== null && typeof p === "object" && isNumber(p.fromWeek) && isNumber(p.sets) && isNumber(p.cardioMinutes);
-const isExercise = (e) => e !== null && typeof e === "object" && ["name", "reps", "rest", "tip", "alt"].every((k) => isText(e[k]));
+// images is optional (no images = text-only card); when present: 1 still or a 2-frame loop.
+const isImageList = (value) => value === undefined || (Array.isArray(value) && value.length >= 1 && value.length <= 2 && value.every(isText));
+const isExercise = (e) =>
+  e !== null && typeof e === "object" && ["name", "reps", "rest", "tip", "alt"].every((k) => isText(e[k])) && isImageList(e.images);
 const isSession = (s) =>
   s !== null && typeof s === "object" && isText(s.id) && isText(s.name) && isNonEmptyList(s.exercises, isExercise);
 
