@@ -29,35 +29,40 @@
           "reps": "10–12",
           "rest": "90 s",
           "tip": "Chin tucked, push through the heels, squeeze the glutes 1 s at the top",
-          "alt": "Dumbbell glute bridge on the floor"
+          "alt": "Dumbbell glute bridge on the floor",
+          "images": ["images/hip-thrust-0.jpg", "images/hip-thrust-1.jpg"]
         },
         {
           "name": "Dumbbell Romanian deadlift",
           "reps": "10–12",
           "rest": "90 s",
           "tip": "Soft knees, push the hips back, dumbbells slide down the thighs, back flat",
-          "alt": "Cable pull-through"
+          "alt": "Cable pull-through",
+          "images": ["images/romanian-deadlift-0.jpg", "images/romanian-deadlift-1.jpg"]
         },
         {
           "name": "Seated leg curl (machine)",
           "reps": "12",
           "rest": "60 s",
           "tip": "Control the weight on the way back (2–3 s)",
-          "alt": "Lying leg curl machine"
+          "alt": "Lying leg curl machine",
+          "images": ["images/seated-leg-curl-0.jpg", "images/seated-leg-curl-1.jpg"]
         },
         {
           "name": "Cable glute kickback",
           "reps": "12 per leg",
           "rest": "45 s",
           "tip": "Hips square, kick back and slightly out, don't arch the lower back",
-          "alt": "Donkey kicks on the floor"
+          "alt": "Donkey kicks on the floor",
+          "images": ["images/cable-kickback-0.jpg", "images/cable-kickback-1.jpg"]
         },
         {
           "name": "Hip abduction machine",
           "reps": "15",
           "rest": "45 s",
           "tip": "Lean slightly forward to feel it in the glutes",
-          "alt": "Side-lying leg raises"
+          "alt": "Side-lying leg raises",
+          "images": ["images/hip-abduction-0.jpg", "images/hip-abduction-1.jpg"]
         }
       ]
     },
@@ -70,35 +75,40 @@
           "reps": "10–12",
           "rest": "90 s",
           "tip": "Dumbbell held at the chest, sit down between the heels, knees follow the toes",
-          "alt": "Bodyweight squat to a bench"
+          "alt": "Bodyweight squat to a bench",
+          "images": ["images/goblet-squat-0.jpg", "images/goblet-squat-1.jpg"]
         },
         {
           "name": "Leg press, feet high and wide",
           "reps": "12",
           "rest": "90 s",
           "tip": "Feet high and wide works the glutes more; never lock the knees; lower back stays on the pad",
-          "alt": "Dumbbell step-up onto a bench"
+          "alt": "Dumbbell step-up onto a bench",
+          "images": ["images/leg-press-0.jpg", "images/leg-press-1.jpg"]
         },
         {
           "name": "Lat pulldown",
           "reps": "10–12",
           "rest": "60 s",
           "tip": "Pull the bar to the upper chest, elbows down toward the hips, chest up",
-          "alt": "Assisted pull-up machine"
+          "alt": "Assisted pull-up machine",
+          "images": ["images/lat-pulldown-0.jpg", "images/lat-pulldown-1.jpg"]
         },
         {
           "name": "Seated cable row",
           "reps": "10–12",
           "rest": "60 s",
           "tip": "Sit tall, pull the handle to the belly, squeeze the shoulder blades together",
-          "alt": "Seated row machine"
+          "alt": "Seated row machine",
+          "images": ["images/seated-cable-row-0.jpg", "images/seated-cable-row-1.jpg"]
         },
         {
           "name": "Plank",
           "reps": "20–30 s",
           "rest": "45 s",
           "tip": "Elbows under the shoulders, squeeze the glutes, don't let the hips sag",
-          "alt": "Plank on the knees"
+          "alt": "Plank on the knees",
+          "images": ["images/plank-0.jpg"]
         }
       ]
     },
@@ -111,35 +121,40 @@
           "reps": "10–12",
           "rest": "90 s",
           "tip": "Chin tucked, push through the heels, squeeze the glutes 1 s at the top",
-          "alt": "Dumbbell glute bridge on the floor"
+          "alt": "Dumbbell glute bridge on the floor",
+          "images": ["images/hip-thrust-0.jpg", "images/hip-thrust-1.jpg"]
         },
         {
           "name": "Dumbbell reverse lunge",
           "reps": "10 per leg",
           "rest": "90 s",
           "tip": "Step back, front knee over the middle of the foot, push through the front heel to stand",
-          "alt": "Static split squat, holding something for balance"
+          "alt": "Static split squat, holding something for balance",
+          "images": ["images/reverse-lunge-0.jpg", "images/reverse-lunge-1.jpg"]
         },
         {
           "name": "45° back extension, glute focus",
           "reps": "12",
           "rest": "60 s",
           "tip": "Feet turned out, upper back slightly rounded, lift with the glutes, stop at a straight line",
-          "alt": "Cable pull-through"
+          "alt": "Cable pull-through",
+          "images": ["images/back-extension-0.jpg", "images/back-extension-1.jpg"]
         },
         {
           "name": "Chest press machine",
           "reps": "10–12",
           "rest": "60 s",
           "tip": "Handles at mid-chest height, push without locking the elbows",
-          "alt": "Incline push-ups on a bench"
+          "alt": "Incline push-ups on a bench",
+          "images": ["images/chest-press-0.jpg", "images/chest-press-1.jpg"]
         },
         {
           "name": "Seated dumbbell shoulder press",
           "reps": "10–12",
           "rest": "60 s",
           "tip": "Back against the pad, press up without arching",
-          "alt": "Shoulder press machine"
+          "alt": "Shoulder press machine",
+          "images": ["images/shoulder-press-0.jpg", "images/shoulder-press-1.jpg"]
         }
       ]
     }
