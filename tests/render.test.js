@@ -64,3 +64,34 @@ test("session lists all five exercises in order", () => {
 test("renderError escapes its message", () => {
   assert.ok(renderError("a < b").includes("a &lt; b"));
 });
+
+test("an exercise with two images shows an animated visual at the top of its card", () => {
+  const html = renderSession({ program, session: program.sessions[0], week: 3, phase: p2 });
+  assert.ok(
+    html.includes(
+      '<div class="visual animated"><img src="images/hip-thrust-0.jpg" alt="Hip thrust (machine, or Smith machine)"><img src="images/hip-thrust-1.jpg" alt="" aria-hidden="true"></div>',
+    ),
+  );
+  const card = html.slice(html.indexOf('<li class="exercise">'), html.indexOf("</li>"));
+  assert.ok(card.indexOf('class="visual') < card.indexOf("<h3>"), "visual comes before the exercise name");
+});
+
+test("an exercise with one image shows a still visual", () => {
+  const html = renderSession({ program, session: program.sessions[1], week: 3, phase: p2 });
+  assert.ok(html.includes('<div class="visual"><img src="images/plank-0.jpg" alt="Plank"></div>'));
+});
+
+test("an exercise without images has no visual", () => {
+  const session = structuredClone(program.sessions[1]);
+  for (const exercise of session.exercises) delete exercise.images;
+  const html = renderSession({ program, session, week: 3, phase: p2 });
+  assert.ok(!html.includes('class="visual'));
+});
+
+test("image paths and names are escaped", () => {
+  const session = structuredClone(program.sessions[1]);
+  session.exercises[4].images = ['images/a"b.jpg'];
+  session.exercises[4].name = "Plank <hold>";
+  const html = renderSession({ program, session, week: 3, phase: p2 });
+  assert.ok(html.includes('<img src="images/a&quot;b.jpg" alt="Plank &lt;hold&gt;">'));
+});
