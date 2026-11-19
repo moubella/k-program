@@ -58,3 +58,24 @@ test("phases and start date match the spec", () => {
   assert.match(program.startDate, /^\d{4}-\d{2}-\d{2}$/);
   assert.ok(!Number.isNaN(Date.parse(program.startDate)));
 });
+
+test("every exercise shows 1 or 2 images that exist", () => {
+  for (const session of program.sessions) {
+    for (const exercise of session.exercises) {
+      const label = `${session.id} ${exercise.name}`;
+      assert.ok(Array.isArray(exercise.images), `${label}: images missing`);
+      assert.ok(exercise.images.length >= 1 && exercise.images.length <= 2, `${label}: needs 1 or 2 images`);
+      for (const src of exercise.images) {
+        assert.match(src, /^images\/[a-z0-9-]+\.jpg$/, `${label}: ${src}`);
+        assert.ok(fs.existsSync(new URL(`../${src}`, import.meta.url)), `${label}: ${src} not found`);
+      }
+    }
+  }
+});
+
+test("the plank is a still image and the hip thrust uses the same photos in A and C", () => {
+  const [a, b, c] = program.sessions;
+  assert.deepEqual(b.exercises[4].images, ["images/plank-0.jpg"]);
+  assert.deepEqual(a.exercises[0].images, ["images/hip-thrust-0.jpg", "images/hip-thrust-1.jpg"]);
+  assert.deepEqual(c.exercises[0].images, a.exercises[0].images);
+});

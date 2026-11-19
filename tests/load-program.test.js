@@ -24,10 +24,19 @@ test("programs that would crash or mislead the app are rejected", () => {
     "missing safety": (() => { const p = copy(); delete p.safety; return p; })(),
     "missing warm-up": (() => { const p = copy(); delete p.warmup; return p; })(),
     "missing cardio": (() => { const p = copy(); delete p.cardio; return p; })(),
+    "images not a list": (() => { const p = copy(); p.sessions[0].exercises[0].images = "images/a.jpg"; return p; })(),
+    "empty images list": (() => { const p = copy(); p.sessions[0].exercises[0].images = []; return p; })(),
+    "three images": (() => { const p = copy(); p.sessions[0].exercises[0].images = ["a.jpg", "b.jpg", "c.jpg"]; return p; })(),
   };
   for (const [label, program] of Object.entries(broken)) {
     assert.equal(isValidProgram(program), false, label);
   }
+});
+
+test("an exercise without images is still valid (shown like v1)", () => {
+  const p = copy();
+  delete p.sessions[0].exercises[0].images;
+  assert.equal(isValidProgram(p), true);
 });
 
 test("loadProgram returns the program from a good response", async () => {
