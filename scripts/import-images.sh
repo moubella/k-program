@@ -11,10 +11,10 @@ QUALITY=70
 
 # slug  free-exercise-db id  frames (0 1 = animated pair, 1 = still)
 MAPPING="
-hip-thrust         Barbell_Hip_Thrust               0 1
-romanian-deadlift  Stiff-Legged_Dumbbell_Deadlift   0 1
-seated-leg-curl    Seated_Leg_Curl                  0 1
-cable-kickback     One-Legged_Cable_Kickback        0 1
+# hip-thrust         Barbell_Hip_Thrust               0 1   (replaced by an AI illustration, see split-illustrations.sh)
+# romanian-deadlift  Stiff-Legged_Dumbbell_Deadlift   0 1   (replaced by an AI illustration, see split-illustrations.sh)
+# seated-leg-curl    Seated_Leg_Curl                  0 1   (replaced by an AI illustration, see split-illustrations.sh)
+# cable-kickback     One-Legged_Cable_Kickback        0 1   (replaced by an AI illustration, see split-illustrations.sh)
 hip-abduction      Thigh_Abductor                   0 1
 goblet-squat       Goblet_Squat                     0 1
 leg-press          Leg_Press                        0 1
@@ -30,6 +30,7 @@ shoulder-press     Dumbbell_Shoulder_Press          0 1
 mkdir -p "$OUT"
 echo "$MAPPING" | while read -r slug id frames; do
   [ -z "$slug" ] && continue
+  [[ "$slug" == \#* ]] && continue
   i=0
   for frame in $frames; do
     file="$OUT/$slug-$i.jpg"
