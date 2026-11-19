@@ -41,9 +41,20 @@ export function renderHome({ program, week, phase, nextId, lastDone }) {
     </section>`;
 }
 
+// Two images = start/end positions shown as a loop (CSS); one image = a still.
+function exerciseVisual(exercise) {
+  const images = exercise.images ?? [];
+  if (images.length === 0) return "";
+  const [first, second] = images;
+  const main = `<img src="${escapeHtml(first)}" alt="${escapeHtml(exercise.name)}">`;
+  if (!second) return `<div class="visual">${main}</div>`;
+  return `<div class="visual animated">${main}<img src="${escapeHtml(second)}" alt="" aria-hidden="true"></div>`;
+}
+
 function exerciseItem(exercise, sets) {
   return `
     <li class="exercise">
+      ${exerciseVisual(exercise)}
       <h3>${escapeHtml(exercise.name)}</h3>
       <p class="dose">${sets} × ${escapeHtml(exercise.reps)} · rest ${escapeHtml(exercise.rest)}</p>
       <p class="tip">${escapeHtml(exercise.tip)}</p>
