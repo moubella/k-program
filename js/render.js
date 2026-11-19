@@ -39,7 +39,7 @@ export function renderHome({ program, week, phase, nextId, lastDone }) {
       <h2>Safety</h2>
       ${list(program.safety, "safety-list")}
     </section>
-    <p class="credits">Exercise photos: free-exercise-db (public domain)</p>`;
+    <p class="credits">Exercise images: AI-generated illustrations and free-exercise-db photos (public domain)</p>`;
 }
 
 // Two images = start/end positions shown as a loop (CSS); one image = a still.
