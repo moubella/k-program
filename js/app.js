@@ -70,6 +70,11 @@ async function start() {
   });
 
   app.addEventListener("click", (event) => {
+    const visual = event.target.closest(".visual.animated");
+    if (visual) {
+      visual.classList.toggle("paused"); // tap the photo to freeze it on one position
+      return;
+    }
     const button = event.target.closest(".done");
     if (!button) return;
     saveLastDone(safeStorage(), { sessionId: button.dataset.session, date: today() });
