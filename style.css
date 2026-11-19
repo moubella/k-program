@@ -303,3 +303,12 @@ h2 {
   color: var(--muted);
   text-align: center;
 }
+
+/* With a photo, the number sits on the photo, so the text needs no left gutter */
+.exercise:has(.visual) {
+  padding-left: 16px;
+}
+
+.exercise:has(.visual) .visual {
+  margin-left: -16px;
+}
