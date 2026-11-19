@@ -98,5 +98,5 @@ test("image paths and names are escaped", () => {
 
 test("home credits the exercise photos", () => {
   const html = renderHome({ program, week: 1, phase: p1, nextId: "A", lastDone: null });
-  assert.ok(html.includes('<p class="credits">Exercise photos: free-exercise-db (public domain)</p>'));
+  assert.ok(html.includes('<p class="credits">Exercise images: AI-generated illustrations and free-exercise-db photos (public domain)</p>'));
 });
