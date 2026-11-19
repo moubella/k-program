@@ -312,3 +312,21 @@ h2 {
 .exercise:has(.visual) .visual {
   margin-left: -16px;
 }
+
+/* The box follows the image's own shape (some illustrations are portrait), so
+   nothing is cropped; the second frame lies exactly on top of the first. */
+.visual {
+  aspect-ratio: auto;
+}
+
+.visual img:first-child {
+  position: static;
+  display: block;
+  height: auto;
+}
+
+/* Illustrations carry a "0. Start / 1. End" label top-left: badge goes top-right */
+.exercise:has(.visual)::before {
+  right: 16px;
+  left: auto;
+}
