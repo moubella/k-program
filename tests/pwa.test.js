@@ -54,6 +54,7 @@ test("every file the page needs is cached", () => {
     "./icons/apple-touch-icon.png",
     "./icons/icon-512.png",
     ...fs.readdirSync(new URL("js/", root)).map((f) => `./js/${f}`),
+    ...JSON.parse(read("program.json")).sessions.flatMap((s) => s.exercises.flatMap((e) => e.images ?? [])).map((src) => `./${src}`),
   ];
   for (const path of needed) assert.ok(assets.includes(path), `${path} missing from sw.js ASSETS`);
 });
