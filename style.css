@@ -249,3 +249,50 @@ h2 {
   border-radius: 16px;
   background: var(--accent-soft);
 }
+
+/* Exercise visual: full card width, start/end photos flip like a 2-frame GIF */
+
+.visual {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  margin: -14px -16px 12px -58px;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+  background: var(--border);
+}
+
+.visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visual.animated img + img {
+  animation: second-frame 2.4s ease-in-out infinite;
+}
+
+.visual.paused img + img {
+  animation-play-state: paused;
+}
+
+@keyframes second-frame {
+  0%, 42% { opacity: 0; }
+  50%, 92% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Reduce Motion: show the end position as a still */
+@media (prefers-reduced-motion: reduce) {
+  .visual.animated img + img {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Keep the exercise number readable on top of the photo */
+.exercise::before {
+  z-index: 1;
+  box-shadow: 0 0 0 2px var(--surface);
+}
