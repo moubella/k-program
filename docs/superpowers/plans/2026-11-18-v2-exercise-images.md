@@ -1,7 +1,7 @@
 # K Program v2 — exercise images (draft plan)
 
 - **Date:** 2026-11-18
-- **Status:** decisions made (2026-11-18), not started
+- **Status:** built on branch `v2` (2026-11-19), waiting for review before merging to `main`
 
 ## Why
 
@@ -56,3 +56,26 @@ v1 describes each exercise in text only (name, sets × reps, a one-line tip). Fo
 4. **Alternatives:** no images for the "Busy? …" alternatives in v2.
 
 Task 2 therefore becomes: draw the custom 2-frame SVG for each gap found in task 1.
+
+## Result (2026-11-19)
+
+Task 1 found a good free-exercise-db photo pair for all 14 distinct exercises, so no custom illustrations were needed. The plank is a hold, so it shows one still photo (the end position). Mapping (also in `scripts/import-images.sh`):
+
+| Exercise | free-exercise-db photos |
+|---|---|
+| Hip thrust (A and C) | Barbell_Hip_Thrust |
+| Dumbbell Romanian deadlift | Stiff-Legged_Dumbbell_Deadlift |
+| Seated leg curl | Seated_Leg_Curl |
+| Cable glute kickback | One-Legged_Cable_Kickback |
+| Hip abduction machine | Thigh_Abductor |
+| Goblet squat | Goblet_Squat |
+| Leg press | Leg_Press |
+| Lat pulldown | Wide-Grip_Lat_Pulldown |
+| Seated cable row | Seated_Cable_Rows |
+| Plank | Plank (still, end position) |
+| Dumbbell reverse lunge | Dumbbell_Rear_Lunge |
+| 45° back extension | Hyperextensions_Back_Extensions |
+| Chest press machine | Leverage_Chest_Press |
+| Seated dumbbell shoulder press | Dumbbell_Shoulder_Press |
+
+27 photos, 480 px wide, about 1.0 MB in total, cached offline (`CACHE` = `kprogram-v2`).
