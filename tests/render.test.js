@@ -95,3 +95,8 @@ test("image paths and names are escaped", () => {
   const html = renderSession({ program, session, week: 3, phase: p2 });
   assert.ok(html.includes('<img src="images/a&quot;b.jpg" alt="Plank &lt;hold&gt;">'));
 });
+
+test("home credits the exercise photos", () => {
+  const html = renderHome({ program, week: 1, phase: p1, nextId: "A", lastDone: null });
+  assert.ok(html.includes('<p class="credits">Exercise photos: free-exercise-db (public domain)</p>'));
+});
