@@ -19,6 +19,7 @@ Plain HTML, CSS and JavaScript: no framework, no build step, no dependencies.
 | `js/render.js` | Builds the Home and Session screens. |
 | `sw.js` | Service worker: offline support. |
 | `manifest.webmanifest`, `icons/` | Home-screen name and icon. |
+| `images/`, `scripts/import-images.sh` | Exercise photos (free-exercise-db, public domain) and the script that downloads and shrinks them. |
 
 ## Run the tests
 
@@ -45,6 +46,7 @@ Everything is in `program.json`:
 - `startDate`: the day of her first session (`YYYY-MM-DD`). Week 1 starts that day; the app counts weeks from it. Set it before deploying.
 - `phases`: what changes with the weeks. Each phase starts at `fromWeek` and sets the number of `sets` for every exercise, the `cardioMinutes`, and an optional `message` shown on Home. Today: weeks 1–2 are 2 sets / 10 min ("Learning weeks"), week 3 onwards is 3 sets / 15 min. To progress later, add a phase, e.g. `{ "fromWeek": 9, "sets": 4, "cardioMinutes": 20 }`.
 - `sessions`: the three sessions, each with five `exercises`. Each exercise has `name`, `reps` (without the sets, e.g. `"10–12"`, `"12 per leg"`, `"20–30 s"`), `rest`, `tip` (one-line form cue) and `alt` (what to do if the machine is busy).
+- `images` (optional, per exercise): 1 path = a still photo, 2 paths = start/end positions shown as a loop. To change photos, edit the mapping in `scripts/import-images.sh`, rerun it, and list the new files in `sw.js` `ASSETS` (the tests check this).
 - `warmup` / `warmupMinutes`, `cardio`, `notes` (Home), `safety` (Home), `sessionMinutes`, `title`.
 
 `npm test` checks the program still matches the design; if you change exercises on purpose, update `tests/program.test.js` too.
