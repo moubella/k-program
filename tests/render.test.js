@@ -37,11 +37,11 @@ test("session in week 2 shows 2 sets and 10 min of cardio", () => {
   const html = renderSession({ program, session: program.sessions[0], week: 2, phase: p1 });
   assert.ok(html.includes("A · Glutes &amp; hamstrings"));
   assert.ok(html.includes("Week 2"));
-  assert.ok(html.includes("Warm-up · 10 min"));
+  assert.ok(html.includes("Start · Cardio · 10 min"));
   assert.ok(html.includes("2 × 10–12 · rest 90 s"));
   assert.ok(html.includes("Chin tucked, push through the heels, squeeze the glutes 1 s at the top"));
   assert.ok(html.includes("Busy? Dumbbell glute bridge on the floor"));
-  assert.ok(html.includes("Cardio · 10 min"));
+  assert.ok(html.includes("Finish · Cardio · 10 min"));
   assert.ok(html.includes("Incline treadmill walk (incline 8–12%, 4.5–5.5 km/h), or stairmaster, or bike"));
   assert.ok(html.includes('<button class="done" data-session="A">I\'m done ✓</button>'));
   assert.ok(html.includes('<a class="back" href="#">‹ Back</a>'));
@@ -50,7 +50,7 @@ test("session in week 2 shows 2 sets and 10 min of cardio", () => {
 test("session in week 3 shows 3 sets and 15 min of cardio", () => {
   const html = renderSession({ program, session: program.sessions[1], week: 3, phase: p2 });
   assert.ok(html.includes("3 × 20–30 s · rest 45 s"));
-  assert.ok(html.includes("Cardio · 15 min"));
+  assert.ok(html.includes("Finish · Cardio · 15 min"));
   assert.ok(!html.includes("2 × "));
 });
 

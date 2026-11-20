@@ -79,3 +79,8 @@ test("the plank is a still image and the hip thrust uses the same photos in A an
   assert.deepEqual(a.exercises[0].images, ["images/hip-thrust-0.jpg", "images/hip-thrust-1.jpg"]);
   assert.deepEqual(c.exercises[0].images, a.exercises[0].images);
 });
+
+test("every session starts with 10 min of real cardio", () => {
+  assert.equal(program.warmupMinutes, 10);
+  assert.match(program.warmup, /^10 min brisk incline walk or bike/);
+});
