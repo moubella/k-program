@@ -15,7 +15,7 @@ MAPPING="
 # romanian-deadlift  Stiff-Legged_Dumbbell_Deadlift   0 1   (replaced by an AI illustration, see split-illustrations.sh)
 # seated-leg-curl    Seated_Leg_Curl                  0 1   (replaced by an AI illustration, see split-illustrations.sh)
 # cable-kickback     One-Legged_Cable_Kickback        0 1   (replaced by an AI illustration, see split-illustrations.sh)
-hip-abduction      Thigh_Abductor                   0 1
+# hip-abduction      Thigh_Abductor                   0 1   (replaced by an AI illustration, see split-illustrations.sh)
 goblet-squat       Goblet_Squat                     0 1
 leg-press          Leg_Press                        0 1
 lat-pulldown       Wide-Grip_Lat_Pulldown           0 1

@@ -20,6 +20,8 @@ Seated Leg Curl and Glute Kickback Guide.png|1 1 763 508|seated-leg-curl-0.jpg
 Seated Leg Curl and Glute Kickback Guide.png|772 1 763 508|seated-leg-curl-1.jpg
 Seated Leg Curl and Glute Kickback Guide.png|1 515 763 508|cable-kickback-0.jpg
 Seated Leg Curl and Glute Kickback Guide.png|772 515 763 508|cable-kickback-1.jpg
+Hip Abduction Machine.png|1 1 881 886|hip-abduction-0.jpg
+Hip Abduction Machine.png|892 1 881 886|hip-abduction-1.jpg
 "
 
 mkdir -p "$OUT"
