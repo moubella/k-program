@@ -72,12 +72,12 @@ export function renderSession({ program, session, week, phase }) {
       <p class="week">Week ${week}</p>
     </header>
     <section class="block">
-      <h2>Warm-up · ${program.warmupMinutes} min</h2>
+      <h2>Start · Cardio · ${program.warmupMinutes} min</h2>
       <p>${escapeHtml(program.warmup)}</p>
     </section>
     <ol class="exercises">${exercises}</ol>
     <section class="block">
-      <h2>Cardio · ${phase.cardioMinutes} min</h2>
+      <h2>Finish · Cardio · ${phase.cardioMinutes} min</h2>
       <p>${escapeHtml(program.cardio)}</p>
     </section>
     <button class="done" data-session="${escapeHtml(session.id)}">I'm done ✓</button>`;
