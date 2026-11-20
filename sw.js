@@ -1,6 +1,6 @@
 // Offline support. Bump CACHE whenever any file below changes, except
 // program.json (it is fetched network-first, so edits arrive on their own).
-const CACHE = "kprogram-v3";
+const CACHE = "kprogram-v4";
 
 const ASSETS = [
   "./",
