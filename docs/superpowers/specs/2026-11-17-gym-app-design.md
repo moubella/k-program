@@ -63,9 +63,9 @@ Success looks like: she opens the app in the gym, gets to today's session in one
 
 | Block | Time | What |
 |---|---|---|
-| Warm-up | ~10 min | 5 min easy bike or treadmill walk, then 2 rounds of 10 glute bridges + 10 bodyweight squats |
+| Start: cardio | ~12 min | 10 min brisk incline walk or bike (breathing harder but able to talk), then 10 glute bridges + 10 bodyweight squats. Changed 2026-11-20: weight loss is the main goal, so every session starts and ends with cardio |
 | 5 exercises | ~40 min | Sets × reps and rest as listed below |
-| Cardio finisher | 10–15 min | Incline treadmill walk (incline 8–12%, 4.5–5.5 km/h), or stairmaster, or bike. 10 min in weeks 1–2, then 15 min (the app shows the right one for the current week) |
+| Finish: cardio | 10–15 min | Incline treadmill walk (incline 8–12%, 4.5–5.5 km/h), or stairmaster, or bike. 10 min in weeks 1–2, then 15 min (the app shows the right one for the current week) |
 
 Overall the week is lower-body dominant: 10 of the 15 exercises train glutes/legs, 4 train the upper body, 1 trains the core.
 
