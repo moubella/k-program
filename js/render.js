@@ -24,14 +24,13 @@ function sessionCard(program, session, { nextId, lastDone }) {
   return `<a class="${isNext ? "card next" : "card"}" href="${href}">${label}${title}${metaHtml}</a>`;
 }
 
-export function renderHome({ program, week, phase, nextId, lastDone }) {
-  const message = phase.message ? `<p class="phase">${escapeHtml(phase.message)}</p>` : "";
-  const cards = program.sessions.map((s) => sessionCard(program, s, { nextId, lastDone })).join("");
+function homePage(program, week, message, cards) {
+  const messageHtml = message ? `<p class="phase">${escapeHtml(message)}</p>` : "";
   return `
     <header class="top">
       <h1>${escapeHtml(program.title)}</h1>
       <p class="week">Week ${week}</p>
-      ${message}
+      ${messageHtml}
     </header>
     <nav class="sessions">${cards}</nav>
     ${list(program.notes, "notes")}
@@ -40,6 +39,25 @@ export function renderHome({ program, week, phase, nextId, lastDone }) {
       ${list(program.safety, "safety-list")}
     </section>
     <p class="credits">Exercise images: AI-generated illustrations and free-exercise-db photos (public domain)</p>`;
+}
+
+export function renderHome({ program, week, phase, nextId, lastDone }) {
+  const cards = program.sessions.map((s) => sessionCard(program, s, { nextId, lastDone })).join("");
+  return homePage(program, week, phase.message, cards);
+}
+
+// Week 0 is cardio only: one session, saved as "W0" when done, so week 1 starts at A.
+export const WEEK0_ID = "W0";
+
+const week0Title = (week0) => `Week 0 · ${escapeHtml(week0.name)}`;
+
+export function renderWeek0Home({ program, lastDone }) {
+  const { week0 } = program;
+  const minutes = week0.machines.reduce((total, m) => total + m.minutes, 0);
+  let meta = `${week0.machines.length} machines · ~${minutes} min`;
+  if (lastDone && lastDone.sessionId === WEEK0_ID) meta += ` · last done ${formatShortDate(lastDone.date)}`;
+  const card = `<a class="card next" href="#week0"><span class="card-label">Next up</span><span class="card-title">${week0Title(week0)}</span><span class="card-meta">${escapeHtml(meta)}</span></a>`;
+  return homePage(program, 0, week0.message, card);
 }
 
 // Two images = start/end positions shown as a loop (CSS); one image = a still.
@@ -81,6 +99,29 @@ export function renderSession({ program, session, week, phase }) {
       <p>${escapeHtml(program.cardio)}</p>
     </section>
     <button class="done" data-session="${escapeHtml(session.id)}">I'm done ✓</button>`;
+}
+
+function machineItem(machine) {
+  return `
+    <li class="exercise">
+      ${exerciseVisual(machine)}
+      <h3>${escapeHtml(machine.name)}</h3>
+      <p class="dose">${machine.minutes} min · ${escapeHtml(machine.settings)}</p>
+      <p class="tip">${escapeHtml(machine.tip)}</p>
+      <p class="alt">Busy? ${escapeHtml(machine.alt)}</p>
+    </li>`;
+}
+
+export function renderWeek0({ program }) {
+  const { week0 } = program;
+  return `
+    <header class="top">
+      <a class="back" href="#">‹ Back</a>
+      <h1>${week0Title(week0)}</h1>
+      <p class="week">${escapeHtml(week0.message)}</p>
+    </header>
+    <ol class="exercises">${week0.machines.map(machineItem).join("")}</ol>
+    <button class="done" data-session="${WEEK0_ID}">I'm done ✓</button>`;
 }
 
 export function renderError(message) {

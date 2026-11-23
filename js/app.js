@@ -1,6 +1,6 @@
 import { currentWeek, nextSessionId, phaseForWeek, resolveToday } from "./schedule.js";
 import { loadLastDone, saveLastDone } from "./storage.js";
-import { renderError, renderHome, renderSession } from "./render.js";
+import { renderError, renderHome, renderSession, renderWeek0, renderWeek0Home } from "./render.js";
 import { loadProgram, MISTAKE_MESSAGE } from "./program.js";
 
 const app = document.getElementById("app");
@@ -21,6 +21,8 @@ function sessionFromHash(program) {
   return match ? program.sessions.find((s) => s.id === decodeURIComponent(match[1])) : undefined;
 }
 
+const onSessionPage = (program) => location.hash === "#week0" || Boolean(sessionFromHash(program));
+
 function render(program) {
   try {
     const week = currentWeek(program.startDate, today());
@@ -30,7 +32,15 @@ function render(program) {
       app.innerHTML = renderSession({ program, session, week, phase });
       return;
     }
+    if (location.hash === "#week0") {
+      app.innerHTML = renderWeek0({ program });
+      return;
+    }
     const lastDone = loadLastDone(safeStorage());
+    if (week === 0) {
+      app.innerHTML = renderWeek0Home({ program, lastDone });
+      return;
+    }
     const nextId = nextSessionId(program.sessions.map((s) => s.id), lastDone?.sessionId ?? null);
     app.innerHTML = renderHome({ program, week, phase, nextId, lastDone });
   } catch {
@@ -60,13 +70,13 @@ async function start() {
   // A session page is left alone so her scroll position survives switching to a
   // music app mid-workout.
   document.addEventListener("visibilitychange", async () => {
-    if (document.hidden || sessionFromHash(program)) return;
+    if (document.hidden || onSessionPage(program)) return;
     try {
       program = await fetchProgram();
     } catch {
       // Offline or a broken edit: the program already in memory is still good.
     }
-    if (!sessionFromHash(program)) render(program);
+    if (!onSessionPage(program)) render(program);
   });
 
   app.addEventListener("click", (event) => {
