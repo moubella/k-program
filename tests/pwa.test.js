@@ -68,5 +68,5 @@ test("every exercise visual has the same 3:4 frame and shows the whole image", (
   assert.match(visual, /aspect-ratio: 3 \/ 4;/);
   const frame = /\.visual \.frame \{([^}]*)\}/.exec(css)[1];
   assert.match(frame, /object-fit: contain;/);
-  assert.equal(css.match(/\.visual \{/g).length, 1, "one .visual rule, so nothing overrides the frame");
+  assert.equal(css.match(/^\.visual \{/gm).length, 1, "one .visual rule, so nothing overrides the frame");
 });

@@ -67,13 +67,15 @@ export function renderWeek0Home({ program, lastDone }) {
 }
 
 // Two images = start/end positions shown as a loop (CSS); one image = a still.
+// The backdrop is a blurred copy that fills the fixed frame around the image.
 function exerciseVisual(exercise) {
   const images = exercise.images ?? [];
   if (images.length === 0) return "";
   const [first, second] = images;
-  const main = `<img src="${escapeHtml(first)}" alt="${escapeHtml(exercise.name)}">`;
-  if (!second) return `<div class="visual">${main}</div>`;
-  return `<div class="visual animated">${main}<img src="${escapeHtml(second)}" alt="" aria-hidden="true"></div>`;
+  const backdrop = `<img class="backdrop" src="${escapeHtml(first)}" alt="" aria-hidden="true">`;
+  const main = `<img class="frame" src="${escapeHtml(first)}" alt="${escapeHtml(exercise.name)}">`;
+  if (!second) return `<div class="visual">${backdrop}${main}</div>`;
+  return `<div class="visual animated">${backdrop}${main}<img class="frame" src="${escapeHtml(second)}" alt="" aria-hidden="true"></div>`;
 }
 
 function exerciseItem(exercise, sets) {

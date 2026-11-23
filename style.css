@@ -254,11 +254,15 @@ h2 {
   background: var(--accent-soft);
 }
 
-/* Exercise visual: full card width, start/end photos flip like a 2-frame GIF */
+/* Exercise visual: full card width, start/end photos flip like a 2-frame GIF.
+   Every visual has the same 3:4 frame whatever the illustration's shape: the
+   whole image is shown (no label cut off) and the space around it is filled
+   with a blurred copy of the same image. Both frames lie exactly on top of
+   each other. */
 
 .visual {
   position: relative;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 3 / 4;
   margin: -14px -16px 12px -58px;
   overflow: hidden;
   border-radius: 15px 15px 0 0;
@@ -270,14 +274,23 @@ h2 {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
-.visual.animated img + img {
+.visual .backdrop {
+  object-fit: cover;
+  filter: blur(18px) brightness(0.9);
+  transform: scale(1.15);
+}
+
+.visual .frame {
+  object-fit: contain;
+}
+
+.visual.animated .frame + .frame {
   animation: second-frame 2.4s ease-in-out infinite;
 }
 
-.visual.paused img + img {
+.visual.paused .frame + .frame {
   animation-play-state: paused;
 }
 
@@ -289,7 +302,7 @@ h2 {
 
 /* Reduce Motion: show the end position as a still */
 @media (prefers-reduced-motion: reduce) {
-  .visual.animated img + img {
+  .visual.animated .frame + .frame {
     animation: none;
     opacity: 1;
   }
@@ -315,18 +328,6 @@ h2 {
 
 .exercise:has(.visual) .visual {
   margin-left: -16px;
-}
-
-/* The box follows the image's own shape (some illustrations are portrait), so
-   nothing is cropped; the second frame lies exactly on top of the first. */
-.visual {
-  aspect-ratio: auto;
-}
-
-.visual img:first-child {
-  position: static;
-  display: block;
-  height: auto;
 }
 
 /* Illustrations carry a "0. Start / 1. End" label top-left: badge goes top-right */
