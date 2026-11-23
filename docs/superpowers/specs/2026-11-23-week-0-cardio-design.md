@@ -9,7 +9,7 @@ Before the strength sessions start, she does one week of cardio only, on the tre
 ## What she sees
 
 - **Dates:** `startDate` (2026-11-29) is the first day of week 0. Week 0 runs 29 Nov – 5 Dec, week 1 (A/B/C) starts 6 Dec, phase 2 (3 sets) starts 20 Dec. Before the start date the app shows week 0.
-- **First page during week 0:** the Week 0 home instead of the A/B/C cards: title, "Week 0", the week 0 message, one "Next up" card for the cardio session, then the usual notes, safety list and credits.
+- **First page during week 0:** the Week 0 home: title, "Week 0", the week 0 message, one "Next up" card for the cardio session, the week 1 preview below, then the usual notes, safety list and credits.
 - **Week 0 session page** (`#week0`): treadmill then bike, each as a card with its optional illustration, minutes and settings, a form tip and a "Busy?" fallback, then "I'm done ✓".
 - **Week 1 preview:** under the cardio card, a "Week 1 · starts <date>" heading lists the A/B/C cards; opening one shows it as week 1 (2 sets).
 - **From week 1:** Home is the A/B/C page as before; week 0 is no longer shown. "I'm done" in week 0 saves session id `W0`, so the first A/B/C "Next up" is A.
