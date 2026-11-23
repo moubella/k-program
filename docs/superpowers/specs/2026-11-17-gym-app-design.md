@@ -101,6 +101,8 @@ The tables below show the full program (week 3 onwards). In weeks 1–2 every ex
 | 4 | Chest press machine | 3 × 10–12 | 60 s | Handles at mid-chest height, push without locking the elbows | Incline push-ups on a bench |
 | 5 | Seated dumbbell shoulder press | 3 × 10–12 | 60 s | Back against the pad, press up without arching | Shoulder press machine |
 
+On hold since 2026-11-23: exercises 3–5 are out of the app for now, so session C shows only hip thrust and reverse lunge. Their rows stay here, and their photos stay in `images/`, so they can come back later.
+
 Hip thrust appears in A and C on purpose: it is the best glute exercise, and doing it twice a week helps a beginner learn it and progress on it.
 
 ### Progression
