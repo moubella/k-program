@@ -10,7 +10,8 @@ WIDTH=600
 QUALITY=72
 
 # Offsets start at 1, not 0: sips ignores a 0 offset and centres the crop.
-# source file | x y width height (pixels, panel inside the sheet) | output name
+# source file | x y width height (pixels, panel inside the sheet) | output name | [pad to width]
+# The optional last field widens a narrow panel to match its partner (see pad-edges.py).
 PANELS="
 Barbell Hip Thrust_ Start to Finish.png|1 1 881 886|hip-thrust-0.jpg
 Barbell Hip Thrust_ Start to Finish.png|892 1 881 886|hip-thrust-1.jpg
@@ -22,13 +23,26 @@ Seated Leg Curl and Glute Kickback Guide.png|1 515 763 508|cable-kickback-0.jpg
 Seated Leg Curl and Glute Kickback Guide.png|772 515 763 508|cable-kickback-1.jpg
 Hip Abduction Machine.png|1 1 881 886|hip-abduction-0.jpg
 Hip Abduction Machine.png|892 1 881 886|hip-abduction-1.jpg
+Seated Cable Row.png|1 1 762 1023|seated-cable-row-0.jpg
+Seated Cable Row.png|773 1 762 1023|seated-cable-row-1.jpg
+Plank.png|1 1 1535 1023|plank-0.jpg
+Dumbbell Reverse Lunge.png|1 1 562 1198|reverse-lunge-0.jpg|739
+Dumbbell Reverse Lunge.png|573 1 739 1198|reverse-lunge-1.jpg
 "
 
 mkdir -p "$OUT"
-echo "$PANELS" | while IFS='|' read -r file rect name; do
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
+echo "$PANELS" | while IFS='|' read -r file rect name pad; do
   [ -z "$file" ] && continue
   read -r x y w h <<<"$rect"
-  sips -s format jpeg -c "$h" "$w" --cropOffset "$y" "$x" "$SRC/$file" --out "$OUT/$name" >/dev/null
+  if [ -n "$pad" ]; then
+    sips -s format bmp -c "$h" "$w" --cropOffset "$y" "$x" "$SRC/$file" --out "$TMP/panel.bmp" >/dev/null
+    python3 -I "$(dirname "$0")/pad-edges.py" "$TMP/panel.bmp" "$TMP/padded.bmp" "$pad"
+    sips -s format jpeg "$TMP/padded.bmp" --out "$OUT/$name" >/dev/null
+  else
+    sips -s format jpeg -c "$h" "$w" --cropOffset "$y" "$x" "$SRC/$file" --out "$OUT/$name" >/dev/null
+  fi
   sips --resampleWidth "$WIDTH" -s formatOptions "$QUALITY" "$OUT/$name" --out "$OUT/$name" >/dev/null
   echo "$name"
 done

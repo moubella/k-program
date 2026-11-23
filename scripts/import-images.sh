@@ -19,9 +19,9 @@ MAPPING="
 goblet-squat       Goblet_Squat                     0 1
 leg-press          Leg_Press                        0 1
 lat-pulldown       Wide-Grip_Lat_Pulldown           0 1
-seated-cable-row   Seated_Cable_Rows                0 1
-plank              Plank                            1
-reverse-lunge      Dumbbell_Rear_Lunge              0 1
+# seated-cable-row   Seated_Cable_Rows                0 1   (replaced by an AI illustration, see split-illustrations.sh)
+# plank              Plank                            1     (replaced by an AI illustration, see split-illustrations.sh)
+# reverse-lunge      Dumbbell_Rear_Lunge              0 1   (replaced by an AI illustration, see split-illustrations.sh)
 back-extension     Hyperextensions_Back_Extensions  0 1
 chest-press        Leverage_Chest_Press             0 1
 shoulder-press     Dumbbell_Shoulder_Press          0 1
