@@ -60,6 +60,7 @@ test("every file the page needs is cached", () => {
     "./icons/icon-512.png",
     "./icons/icon.svg",
     "./icons/favicon-32.png",
+    "./favicon.ico",
     ...fs.readdirSync(new URL("js/", root)).map((f) => `./js/${f}`),
     ...[...program.sessions.flatMap((s) => s.exercises), ...program.week0.machines]
       .flatMap((item) => item.images ?? [])
@@ -86,4 +87,5 @@ test("every PNG icon has the size its name or manifest entry promises", () => {
   assert.deepEqual(pngSize("icons/icon-192.png"), [192, 192]);
   assert.deepEqual(pngSize("icons/icon-512.png"), [512, 512]);
   assert.deepEqual(pngSize("icons/favicon-32.png"), [32, 32]);
+  assert.ok(exists("favicon.ico"), "favicon.ico at the root, for browsers that only look there");
 });
