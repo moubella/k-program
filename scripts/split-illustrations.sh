@@ -23,11 +23,17 @@ Seated Leg Curl and Glute Kickback Guide.png|1 515 763 508|cable-kickback-0.jpg
 Seated Leg Curl and Glute Kickback Guide.png|772 515 763 508|cable-kickback-1.jpg
 Hip Abduction Machine.png|1 1 881 886|hip-abduction-0.jpg
 Hip Abduction Machine.png|892 1 881 886|hip-abduction-1.jpg
-Seated Cable Row.png|1 1 762 1023|seated-cable-row-0.jpg
-Seated Cable Row.png|773 1 762 1023|seated-cable-row-1.jpg
-Plank.png|1 1 1535 1023|plank-0.jpg
-Dumbbell Reverse Lunge.png|1 1 562 1198|reverse-lunge-0.jpg|739
-Dumbbell Reverse Lunge.png|573 1 739 1198|reverse-lunge-1.jpg
+Seated cable row.PNG|1 1 762 1023|seated-cable-row-0.jpg
+Seated cable row.PNG|773 1 762 1023|seated-cable-row-1.jpg
+plank.PNG|1 1 1535 1023|plank-0.jpg
+Dumbbell reverse lunge.PNG|1 1 562 1198|reverse-lunge-0.jpg|739
+Dumbbell reverse lunge.PNG|573 1 739 1198|reverse-lunge-1.jpg
+Goblet Squat Start and Finish.png|1 1 651 1198|goblet-squat-0.jpg
+Goblet Squat Start and Finish.png|660 1 651 1198|goblet-squat-1.jpg
+Leg Press Form_ Start to Finish.png|1 1 1535 509|leg-press-0.jpg
+Leg Press Form_ Start to Finish.png|1 515 1535 509|leg-press-1.jpg
+Lat Pulldown Form Guide.png|1 1 651 1198|lat-pulldown-0.jpg
+Lat Pulldown Form Guide.png|660 1 651 1198|lat-pulldown-1.jpg
 "
 
 mkdir -p "$OUT"
