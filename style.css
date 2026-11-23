@@ -101,6 +101,10 @@ h2 {
   gap: 12px;
 }
 
+.sessions-heading {
+  margin: 24px 0 10px;
+}
+
 .card {
   display: flex;
   flex-direction: column;

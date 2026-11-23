@@ -101,7 +101,7 @@ test("home credits the exercise photos", () => {
   assert.ok(html.includes('<p class="credits">Exercise images: AI-generated illustrations and free-exercise-db photos (public domain)</p>'));
 });
 
-test("week 0 home shows only the cardio session, as next up", () => {
+test("week 0 home shows the cardio session as next up", () => {
   const html = renderWeek0Home({ program, lastDone: null });
   assert.ok(html.includes('<p class="week">Week 0</p>'));
   assert.ok(html.includes("Get used to the gym: easy pace, you can still talk"));
@@ -109,7 +109,6 @@ test("week 0 home shows only the cardio session, as next up", () => {
   assert.ok(html.includes("Next up"));
   assert.ok(html.includes("Week 0 · Cardio only"));
   assert.ok(html.includes("2 machines · ~30 min"));
-  assert.ok(!html.includes("#session/"), "no A/B/C cards");
   assert.ok(!html.includes("last done"));
   assert.ok(html.includes("Rest days: 30 min walk"));
   assert.ok(html.includes("Sharp or joint pain: stop that exercise"));

@@ -26,6 +26,11 @@ export function resolveToday(search, now) {
   return isValidIsoDate(override) ? override : todayIso(now);
 }
 
+export function addDays(iso, days) {
+  const date = new Date(toUtcMs(iso) + days * DAY_MS);
+  return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}`;
+}
+
 // Week 0 (cardio only) starts on the start date; the A/B/C sessions start at week 1.
 export function currentWeek(startDate, today) {
   const days = Math.round((toUtcMs(today) - toUtcMs(startDate)) / DAY_MS);

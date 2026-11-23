@@ -29,7 +29,9 @@ function render(program) {
     const phase = phaseForWeek(program.phases, week);
     const session = sessionFromHash(program);
     if (session) {
-      app.innerHTML = renderSession({ program, session, week, phase });
+      // During week 0 the A/B/C sessions are a preview of week 1.
+      const sessionWeek = Math.max(week, 1);
+      app.innerHTML = renderSession({ program, session, week: sessionWeek, phase: phaseForWeek(program.phases, sessionWeek) });
       return;
     }
     if (location.hash === "#week0") {

@@ -1,4 +1,4 @@
-import { formatShortDate } from "./schedule.js";
+import { addDays, formatShortDate } from "./schedule.js";
 
 const HTML_ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
 
@@ -24,7 +24,7 @@ function sessionCard(program, session, { nextId, lastDone }) {
   return `<a class="${isNext ? "card next" : "card"}" href="${href}">${label}${title}${metaHtml}</a>`;
 }
 
-function homePage(program, week, message, cards) {
+function homePage(program, week, message, cards, extra = "") {
   const messageHtml = message ? `<p class="phase">${escapeHtml(message)}</p>` : "";
   return `
     <header class="top">
@@ -33,6 +33,7 @@ function homePage(program, week, message, cards) {
       ${messageHtml}
     </header>
     <nav class="sessions">${cards}</nav>
+    ${extra}
     ${list(program.notes, "notes")}
     <section class="safety">
       <h2>Safety</h2>
@@ -57,7 +58,12 @@ export function renderWeek0Home({ program, lastDone }) {
   let meta = `${week0.machines.length} machines · ~${minutes} min`;
   if (lastDone && lastDone.sessionId === WEEK0_ID) meta += ` · last done ${formatShortDate(lastDone.date)}`;
   const card = `<a class="card next" href="#week0"><span class="card-label">Next up</span><span class="card-title">${week0Title(week0)}</span><span class="card-meta">${escapeHtml(meta)}</span></a>`;
-  return homePage(program, 0, week0.message, card);
+  // She can already look at the strength sessions that start the week after.
+  const week1Cards = program.sessions.map((s) => sessionCard(program, s, { nextId: null, lastDone: null })).join("");
+  const week1 = `
+    <h2 class="sessions-heading">Week 1 · starts ${formatShortDate(addDays(program.startDate, 7))}</h2>
+    <nav class="sessions">${week1Cards}</nav>`;
+  return homePage(program, 0, week0.message, card, week1);
 }
 
 // Two images = start/end positions shown as a loop (CSS); one image = a still.
