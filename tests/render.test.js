@@ -69,7 +69,7 @@ test("an exercise with two images shows an animated visual at the top of its car
   const html = renderSession({ program, session: program.sessions[0], week: 3, phase: p2 });
   assert.ok(
     html.includes(
-      '<div class="visual animated"><img src="images/hip-thrust-0.jpg" alt="Hip thrust (machine, or Smith machine)"><img src="images/hip-thrust-1.jpg" alt="" aria-hidden="true"></div>',
+      '<div class="visual animated"><img class="backdrop" src="images/hip-thrust-0.jpg" alt="" aria-hidden="true"><img class="frame" src="images/hip-thrust-0.jpg" alt="Hip thrust (machine, or Smith machine)"><img class="frame" src="images/hip-thrust-1.jpg" alt="" aria-hidden="true"></div>',
     ),
   );
   const card = html.slice(html.indexOf('<li class="exercise">'), html.indexOf("</li>"));
@@ -78,7 +78,7 @@ test("an exercise with two images shows an animated visual at the top of its car
 
 test("an exercise with one image shows a still visual", () => {
   const html = renderSession({ program, session: program.sessions[1], week: 3, phase: p2 });
-  assert.ok(html.includes('<div class="visual"><img src="images/plank-0.jpg" alt="Plank"></div>'));
+  assert.ok(html.includes('<div class="visual"><img class="backdrop" src="images/plank-0.jpg" alt="" aria-hidden="true"><img class="frame" src="images/plank-0.jpg" alt="Plank"></div>'));
 });
 
 test("an exercise without images has no visual", () => {
@@ -93,7 +93,7 @@ test("image paths and names are escaped", () => {
   session.exercises[4].images = ['images/a"b.jpg'];
   session.exercises[4].name = "Plank <hold>";
   const html = renderSession({ program, session, week: 3, phase: p2 });
-  assert.ok(html.includes('<img src="images/a&quot;b.jpg" alt="Plank &lt;hold&gt;">'));
+  assert.ok(html.includes('<img class="frame" src="images/a&quot;b.jpg" alt="Plank &lt;hold&gt;">'));
 });
 
 test("home credits the exercise photos", () => {
@@ -139,7 +139,7 @@ test("week 0 machines show their illustration when they have one", () => {
   const withImages = structuredClone(program);
   withImages.week0.machines[1].images = ["images/bike-0.jpg"];
   const html = renderWeek0({ program: withImages });
-  assert.ok(html.includes('<div class="visual"><img src="images/bike-0.jpg" alt="Exercise bike"></div>'));
+  assert.ok(html.includes('<img class="frame" src="images/bike-0.jpg" alt="Exercise bike">'));
   assert.ok(!renderWeek0({ program }).includes('class="visual'));
 });
 

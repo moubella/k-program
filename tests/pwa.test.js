@@ -61,3 +61,12 @@ test("every file the page needs is cached", () => {
   ];
   for (const path of needed) assert.ok(assets.includes(path), `${path} missing from sw.js ASSETS`);
 });
+
+test("every exercise visual has the same 3:4 frame and shows the whole image", () => {
+  const css = read("style.css");
+  const visual = /\.visual \{([^}]*)\}/.exec(css)[1];
+  assert.match(visual, /aspect-ratio: 3 \/ 4;/);
+  const frame = /\.visual \.frame \{([^}]*)\}/.exec(css)[1];
+  assert.match(frame, /object-fit: contain;/);
+  assert.equal(css.match(/\.visual \{/g).length, 1, "one .visual rule, so nothing overrides the frame");
+});
