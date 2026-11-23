@@ -13,6 +13,9 @@ const isPhase = (p) => p !== null && typeof p === "object" && isNumber(p.fromWee
 const isImageList = (value) => value === undefined || (Array.isArray(value) && value.length >= 1 && value.length <= 2 && value.every(isText));
 const isExercise = (e) =>
   e !== null && typeof e === "object" && ["name", "reps", "rest", "tip", "alt"].every((k) => isText(e[k])) && isImageList(e.images);
+const isMachine = (m) =>
+  m !== null && typeof m === "object" && ["name", "settings", "tip", "alt"].every((k) => isText(m[k])) && isNumber(m.minutes) && isImageList(m.images);
+const isWeek0 = (w) => w !== null && typeof w === "object" && isText(w.name) && isText(w.message) && isNonEmptyList(w.machines, isMachine);
 const isSession = (s) =>
   s !== null && typeof s === "object" && isText(s.id) && isText(s.name) && isNonEmptyList(s.exercises, isExercise);
 
@@ -31,6 +34,7 @@ export function isValidProgram(program) {
     isTextList(program.notes) &&
     isTextList(program.safety) &&
     isNonEmptyList(program.phases, isPhase) &&
+    isWeek0(program.week0) &&
     isNonEmptyList(program.sessions, isSession)
   );
 }

@@ -19,6 +19,26 @@
   "warmupMinutes": 10,
   "warmup": "10 min brisk incline walk or bike: breathing harder but still able to talk. Then 10 glute bridges + 10 bodyweight squats to wake up the glutes",
   "cardio": "Incline treadmill walk (incline 8–12%, 4.5–5.5 km/h), or stairmaster, or bike",
+  "week0": {
+    "name": "Cardio only",
+    "message": "Get used to the gym: easy pace, you can still talk",
+    "machines": [
+      {
+        "name": "Treadmill, incline walk",
+        "minutes": 15,
+        "settings": "Incline 5–8%, 4.5–5 km/h",
+        "tip": "Stand tall and let go of the handrails; slow down if you can't talk",
+        "alt": "Exercise bike for the whole 30 min"
+      },
+      {
+        "name": "Exercise bike",
+        "minutes": 15,
+        "settings": "Easy resistance, 70–90 rpm",
+        "tip": "Seat at hip height: the knee stays slightly bent at the bottom of the pedal stroke",
+        "alt": "Elliptical or stairmaster"
+      }
+    ]
+  },
   "sessions": [
     {
       "id": "A",
