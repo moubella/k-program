@@ -131,30 +131,6 @@
           "tip": "Step back, front knee over the middle of the foot, push through the front heel to stand",
           "alt": "Static split squat, holding something for balance",
           "images": ["images/reverse-lunge-0.jpg", "images/reverse-lunge-1.jpg"]
-        },
-        {
-          "name": "45° back extension, glute focus",
-          "reps": "12",
-          "rest": "60 s",
-          "tip": "Feet turned out, upper back slightly rounded, lift with the glutes, stop at a straight line",
-          "alt": "Cable pull-through",
-          "images": ["images/back-extension-0.jpg", "images/back-extension-1.jpg"]
-        },
-        {
-          "name": "Chest press machine",
-          "reps": "10–12",
-          "rest": "60 s",
-          "tip": "Handles at mid-chest height, push without locking the elbows",
-          "alt": "Incline push-ups on a bench",
-          "images": ["images/chest-press-0.jpg", "images/chest-press-1.jpg"]
-        },
-        {
-          "name": "Seated dumbbell shoulder press",
-          "reps": "10–12",
-          "rest": "60 s",
-          "tip": "Back against the pad, press up without arching",
-          "alt": "Shoulder press machine",
-          "images": ["images/shoulder-press-0.jpg", "images/shoulder-press-1.jpg"]
         }
       ]
     }
