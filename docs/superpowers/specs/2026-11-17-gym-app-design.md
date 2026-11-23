@@ -201,7 +201,7 @@ Two screens.
 - The program file holds her **start date** (the day of her first session) and a short list of **phases**. Each phase starts at a given week and sets the number of sets per exercise, the cardio duration, and an optional one-line message:
   - Phase 1, from week 1: 2 sets, 10 min cardio, message "Learning weeks: light weights, focus on form".
   - Phase 2, from week 3: 3 sets, 15 min cardio, no message.
-- Current week = number of full 7-day blocks since the start date, plus 1, using the phone's local date. A start date in the future shows week 1.
+- Current week = number of full 7-day blocks since the start date, using the phone's local date, so the start date opens week 0 (cardio only, see `2026-11-23-week-0-cardio-design.md`) and A/B/C start at week 1. A start date in the future shows week 0.
 - Home shows "Week N" plus the current phase's message (if any). The session page shows "Week N" and the sets and cardio minutes for the current phase. Reps, rest, tips and alternatives come from each exercise and do not change with the phase.
 - The week is computed from the date every time the app opens; nothing extra is stored on the phone, so the only stored state is still the last finished session.
 - Refreshing the program later (after 8–12 weeks) can mean adding a phase or editing exercises in the same file.
