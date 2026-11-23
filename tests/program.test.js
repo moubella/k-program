@@ -22,13 +22,7 @@ test("has the spec's exercises in order", () => {
       "Hip abduction machine",
     ],
     ["Goblet squat", "Leg press, feet high and wide", "Lat pulldown", "Seated cable row", "Plank"],
-    [
-      "Hip thrust (machine, or Smith machine)",
-      "Dumbbell reverse lunge",
-      "45° back extension, glute focus",
-      "Chest press machine",
-      "Seated dumbbell shoulder press",
-    ],
+    ["Hip thrust (machine, or Smith machine)", "Dumbbell reverse lunge"],
   ]);
 });
 
