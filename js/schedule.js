@@ -26,9 +26,10 @@ export function resolveToday(search, now) {
   return isValidIsoDate(override) ? override : todayIso(now);
 }
 
+// Week 0 (cardio only) starts on the start date; the A/B/C sessions start at week 1.
 export function currentWeek(startDate, today) {
   const days = Math.round((toUtcMs(today) - toUtcMs(startDate)) / DAY_MS);
-  return days < 0 ? 1 : Math.floor(days / 7) + 1;
+  return days < 0 ? 0 : Math.floor(days / 7);
 }
 
 export function phaseForWeek(phases, week) {
