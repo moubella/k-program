@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  addDays,
   currentWeek,
   formatShortDate,
   isValidIsoDate,
@@ -83,4 +84,10 @@ test("formatShortDate gives weekday, day, month in English", () => {
   assert.equal(formatShortDate("2026-11-30"), "Mon 30 Nov");
   assert.equal(formatShortDate("2026-12-05"), "Sat 5 Dec");
   assert.equal(formatShortDate("2027-01-03"), "Sun 3 Jan");
+});
+
+test("addDays moves across months and daylight-saving changes", () => {
+  assert.equal(addDays("2026-11-29", 7), "2026-12-06");
+  assert.equal(addDays("2026-03-23", 7), "2026-03-30");
+  assert.equal(addDays("2026-12-28", 7), "2027-01-04");
 });

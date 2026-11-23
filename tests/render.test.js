@@ -143,3 +143,12 @@ test("week 0 machines show their illustration when they have one", () => {
   assert.ok(html.includes('<div class="visual"><img src="images/bike-0.jpg" alt="Exercise bike"></div>'));
   assert.ok(!renderWeek0({ program }).includes('class="visual'));
 });
+
+test("week 0 home also links to the week 1 sessions, after the cardio card", () => {
+  const html = renderWeek0Home({ program, lastDone: null });
+  assert.ok(html.includes("Week 1 · starts Sun 6 Dec"));
+  for (const id of ["A", "B", "C"]) assert.match(html, new RegExp(`<a class="card" href="#session/${id}">`));
+  assert.ok(html.indexOf('href="#week0"') < html.indexOf("Week 1 · starts"));
+  assert.ok(html.indexOf("Week 1 · starts") < html.indexOf('href="#session/A"'));
+  assert.equal(html.match(/card next/g).length, 1, "only the cardio card is next up");
+});
