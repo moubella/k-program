@@ -20,6 +20,7 @@ test("manifest makes a standalone app rooted at ./", () => {
   assert.equal(m.start_url, "./");
   assert.equal(m.scope, "./");
   assert.ok(m.icons.some((i) => i.src === "icons/icon-512.png" && i.sizes === "512x512"));
+  assert.ok(m.icons.some((i) => i.src === "icons/icon-192.png" && i.sizes === "192x192"));
   for (const icon of m.icons) assert.ok(exists(icon.src), `${icon.src} exists`);
 });
 
@@ -27,6 +28,8 @@ test("index.html links the manifest and apple-touch-icon with relative URLs", ()
   const html = read("index.html");
   assert.ok(html.includes('<link rel="manifest" href="manifest.webmanifest">'));
   assert.ok(html.includes('<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">'));
+  assert.ok(html.includes('<link rel="icon" href="icons/icon.svg" type="image/svg+xml">'));
+  assert.ok(html.includes('<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">'));
   assert.ok(!/(href|src)="\//.test(html), "no root-absolute URLs");
 });
 
@@ -53,7 +56,10 @@ test("every file the page needs is cached", () => {
     "./program.json",
     "./manifest.webmanifest",
     "./icons/apple-touch-icon.png",
+    "./icons/icon-192.png",
     "./icons/icon-512.png",
+    "./icons/icon.svg",
+    "./icons/favicon-32.png",
     ...fs.readdirSync(new URL("js/", root)).map((f) => `./js/${f}`),
     ...[...program.sessions.flatMap((s) => s.exercises), ...program.week0.machines]
       .flatMap((item) => item.images ?? [])
@@ -69,4 +75,15 @@ test("every exercise visual has the same 3:4 frame and shows the whole image", (
   const frame = /\.visual \.frame \{([^}]*)\}/.exec(css)[1];
   assert.match(frame, /object-fit: contain;/);
   assert.equal(css.match(/^\.visual \{/gm).length, 1, "one .visual rule, so nothing overrides the frame");
+});
+
+test("every PNG icon has the size its name or manifest entry promises", () => {
+  const pngSize = (file) => {
+    const data = fs.readFileSync(new URL(file, root));
+    return [data.readUInt32BE(16), data.readUInt32BE(20)];
+  };
+  assert.deepEqual(pngSize("icons/apple-touch-icon.png"), [180, 180]);
+  assert.deepEqual(pngSize("icons/icon-192.png"), [192, 192]);
+  assert.deepEqual(pngSize("icons/icon-512.png"), [512, 512]);
+  assert.deepEqual(pngSize("icons/favicon-32.png"), [32, 32]);
 });
