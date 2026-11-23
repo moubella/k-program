@@ -18,7 +18,7 @@ Plain HTML, CSS and JavaScript: no framework, no build step, no dependencies.
 | `js/storage.js` | Remembers the last finished session on the phone. |
 | `js/render.js` | Builds the Home and Session screens. |
 | `sw.js` | Service worker: offline support. |
-| `manifest.webmanifest`, `icons/` | Home-screen name, icon and favicon. `icons/icon.svg` is the source; `scripts/render-icons.sh` renders the PNG sizes from it (needs Firefox). |
+| `manifest.webmanifest`, `icons/` | Home-screen name, icon and favicon. `icons/icon.svg` is the source; `scripts/render-icons.sh` renders the PNG sizes and the root `favicon.ico` from it (needs Firefox). |
 | `images/`, `scripts/import-images.sh` | Exercise photos (free-exercise-db, public domain) and the script that downloads and shrinks them. |
 
 ## Run the tests

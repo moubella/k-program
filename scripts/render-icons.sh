@@ -31,3 +31,5 @@ for size in 512 192 180 32; do
   sips -s format png -z "$size" "$size" "$TMP/opaque.jpg" --out "icons/$name" >/dev/null
   echo "icons/$name"
 done
+sips -s format ico icons/favicon-32.png --out favicon.ico >/dev/null
+echo "favicon.ico"
