@@ -45,6 +45,7 @@ test("every cached asset exists on disk", () => {
 
 test("every file the page needs is cached", () => {
   const assets = cachedAssets();
+  const program = JSON.parse(read("program.json"));
   const needed = [
     "./",
     "./index.html",
@@ -54,7 +55,9 @@ test("every file the page needs is cached", () => {
     "./icons/apple-touch-icon.png",
     "./icons/icon-512.png",
     ...fs.readdirSync(new URL("js/", root)).map((f) => `./js/${f}`),
-    ...JSON.parse(read("program.json")).sessions.flatMap((s) => s.exercises.flatMap((e) => e.images ?? [])).map((src) => `./${src}`),
+    ...[...program.sessions.flatMap((s) => s.exercises), ...program.week0.machines]
+      .flatMap((item) => item.images ?? [])
+      .map((src) => `./${src}`),
   ];
   for (const path of needed) assert.ok(assets.includes(path), `${path} missing from sw.js ASSETS`);
 });

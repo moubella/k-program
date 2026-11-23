@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { escapeHtml, renderError, renderHome, renderSession } from "../js/render.js";
+import { escapeHtml, renderError, renderHome, renderSession, renderWeek0, renderWeek0Home } from "../js/render.js";
 
 const program = JSON.parse(fs.readFileSync(new URL("../program.json", import.meta.url), "utf8"));
 const [p1, p2] = program.phases;
@@ -99,4 +99,47 @@ test("image paths and names are escaped", () => {
 test("home credits the exercise photos", () => {
   const html = renderHome({ program, week: 1, phase: p1, nextId: "A", lastDone: null });
   assert.ok(html.includes('<p class="credits">Exercise images: AI-generated illustrations and free-exercise-db photos (public domain)</p>'));
+});
+
+test("week 0 home shows only the cardio session, as next up", () => {
+  const html = renderWeek0Home({ program, lastDone: null });
+  assert.ok(html.includes('<p class="week">Week 0</p>'));
+  assert.ok(html.includes("Get used to the gym: easy pace, you can still talk"));
+  assert.match(html, /<a class="card next" href="#week0">/);
+  assert.ok(html.includes("Next up"));
+  assert.ok(html.includes("Week 0 · Cardio only"));
+  assert.ok(html.includes("2 machines · ~30 min"));
+  assert.ok(!html.includes("#session/"), "no A/B/C cards");
+  assert.ok(!html.includes("last done"));
+  assert.ok(html.includes("Rest days: 30 min walk"));
+  assert.ok(html.includes("Sharp or joint pain: stop that exercise"));
+  assert.ok(html.includes('<p class="credits">'));
+});
+
+test("week 0 home shows when the cardio session was last done", () => {
+  const html = renderWeek0Home({ program, lastDone: { sessionId: "W0", date: "2026-11-30" } });
+  assert.ok(html.includes("2 machines · ~30 min · last done Mon 30 Nov"));
+  const other = renderWeek0Home({ program, lastDone: { sessionId: "A", date: "2026-11-30" } });
+  assert.ok(!other.includes("last done"));
+});
+
+test("week 0 page lists treadmill then bike with minutes, settings, tip and fallback", () => {
+  const html = renderWeek0({ program });
+  assert.ok(html.includes('<a class="back" href="#">‹ Back</a>'));
+  assert.ok(html.includes("<h1>Week 0 · Cardio only</h1>"));
+  assert.ok(html.indexOf("Treadmill, incline walk") < html.indexOf("Exercise bike"));
+  assert.ok(html.includes("15 min · Incline 5–8%, 4.5–5 km/h"));
+  assert.ok(html.includes("15 min · Easy resistance, 70–90 rpm"));
+  assert.ok(html.includes("Busy? Exercise bike for the whole 30 min"));
+  assert.ok(html.includes('<button class="done" data-session="W0">I\'m done ✓</button>'));
+  assert.ok(!html.includes("Start · Cardio"), "no warm-up block");
+  assert.ok(!html.includes("Finish · Cardio"), "no finishing cardio block");
+});
+
+test("week 0 machines show their illustration when they have one", () => {
+  const withImages = structuredClone(program);
+  withImages.week0.machines[1].images = ["images/bike-0.jpg"];
+  const html = renderWeek0({ program: withImages });
+  assert.ok(html.includes('<div class="visual"><img src="images/bike-0.jpg" alt="Exercise bike"></div>'));
+  assert.ok(!renderWeek0({ program }).includes('class="visual'));
 });

@@ -27,6 +27,12 @@ test("programs that would crash or mislead the app are rejected", () => {
     "images not a list": (() => { const p = copy(); p.sessions[0].exercises[0].images = "images/a.jpg"; return p; })(),
     "empty images list": (() => { const p = copy(); p.sessions[0].exercises[0].images = []; return p; })(),
     "three images": (() => { const p = copy(); p.sessions[0].exercises[0].images = ["a.jpg", "b.jpg", "c.jpg"]; return p; })(),
+    "missing week 0": (() => { const p = copy(); delete p.week0; return p; })(),
+    "week 0 without a message": (() => { const p = copy(); delete p.week0.message; return p; })(),
+    "week 0 without machines": (() => { const p = copy(); p.week0.machines = []; return p; })(),
+    "machine without settings": (() => { const p = copy(); delete p.week0.machines[0].settings; return p; })(),
+    "machine minutes as text": (() => { const p = copy(); p.week0.machines[0].minutes = "15"; return p; })(),
+    "machine images not a list": (() => { const p = copy(); p.week0.machines[0].images = "images/a.jpg"; return p; })(),
   };
   for (const [label, program] of Object.entries(broken)) {
     assert.equal(isValidProgram(program), false, label);
@@ -36,6 +42,12 @@ test("programs that would crash or mislead the app are rejected", () => {
 test("an exercise without images is still valid (shown like v1)", () => {
   const p = copy();
   delete p.sessions[0].exercises[0].images;
+  assert.equal(isValidProgram(p), true);
+});
+
+test("a week 0 machine with images is valid", () => {
+  const p = copy();
+  p.week0.machines[0].images = ["images/treadmill-0.jpg", "images/treadmill-1.jpg"];
   assert.equal(isValidProgram(p), true);
 });
 

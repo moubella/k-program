@@ -10,20 +10,20 @@ import {
   todayIso,
 } from "../js/schedule.js";
 
-test("currentWeek counts full 7-day blocks from the start date", () => {
-  assert.equal(currentWeek("2026-11-23", "2026-11-23"), 1);
-  assert.equal(currentWeek("2026-11-23", "2026-11-29"), 1);
-  assert.equal(currentWeek("2026-11-23", "2026-11-30"), 2);
-  assert.equal(currentWeek("2026-11-23", "2026-12-07"), 3);
+test("currentWeek counts full 7-day blocks from the start date, starting at week 0", () => {
+  assert.equal(currentWeek("2026-11-23", "2026-11-23"), 0);
+  assert.equal(currentWeek("2026-11-23", "2026-11-29"), 0);
+  assert.equal(currentWeek("2026-11-23", "2026-11-30"), 1);
+  assert.equal(currentWeek("2026-11-23", "2026-12-07"), 2);
 });
 
-test("currentWeek shows week 1 for a future start date", () => {
-  assert.equal(currentWeek("2026-11-23", "2026-11-20"), 1);
+test("currentWeek shows week 0 for a future start date", () => {
+  assert.equal(currentWeek("2026-11-23", "2026-11-20"), 0);
 });
 
 test("currentWeek is not shifted by daylight-saving changes", () => {
-  assert.equal(currentWeek("2026-03-23", "2026-03-30"), 2);
-  assert.equal(currentWeek("2026-10-19", "2026-10-26"), 2);
+  assert.equal(currentWeek("2026-03-23", "2026-03-30"), 1);
+  assert.equal(currentWeek("2026-10-19", "2026-10-26"), 1);
 });
 
 test("phaseForWeek picks the last phase that has started", () => {

@@ -44,6 +44,17 @@ test("spot-checks exact values", () => {
   assert.equal(b.exercises[4].reps, "20–30 s");
 });
 
+test("week 0 is treadmill then bike, 15 min each", () => {
+  assert.equal(program.week0.name, "Cardio only");
+  assert.deepEqual(
+    program.week0.machines.map((m) => [m.name, m.minutes]),
+    [
+      ["Treadmill, incline walk", 15],
+      ["Exercise bike", 15],
+    ],
+  );
+});
+
 test("phases and start date match the spec", () => {
   assert.deepEqual(program.phases, [
     { fromWeek: 1, sets: 2, cardioMinutes: 10, message: "Learning weeks: light weights, focus on form" },
