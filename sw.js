@@ -1,6 +1,6 @@
 // Offline support. Bump CACHE whenever any file below changes, except
 // program.json (it is fetched network-first, so edits arrive on their own).
-const CACHE = "kprogram-v13";
+const CACHE = "kprogram-v14";
 
 const ASSETS = [
   "./",
@@ -19,6 +19,7 @@ const ASSETS = [
   "./icons/icon.svg",
   "./icons/favicon-32.png",
   "./favicon.ico",
+  "./images/bike-0.jpg",
   "./images/cable-kickback-0.jpg",
   "./images/cable-kickback-1.jpg",
   "./images/goblet-squat-0.jpg",
@@ -40,6 +41,7 @@ const ASSETS = [
   "./images/seated-cable-row-1.jpg",
   "./images/seated-leg-curl-0.jpg",
   "./images/seated-leg-curl-1.jpg",
+  "./images/treadmill-0.jpg",
 ];
 
 const PROGRAM_TIMEOUT_MS = 3000;
