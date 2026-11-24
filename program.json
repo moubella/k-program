@@ -28,14 +28,16 @@
         "minutes": 15,
         "settings": "Incline 5–8%, 4.5–5 km/h",
         "tip": "Stand tall and let go of the handrails; slow down if you can't talk",
-        "alt": "Exercise bike for the whole 30 min"
+        "alt": "Exercise bike for the whole 30 min",
+        "images": ["images/treadmill-0.jpg"]
       },
       {
         "name": "Exercise bike",
         "minutes": 15,
         "settings": "Easy resistance, 70–90 rpm",
         "tip": "Seat at hip height: the knee stays slightly bent at the bottom of the pedal stroke",
-        "alt": "Elliptical or stairmaster"
+        "alt": "Elliptical or stairmaster",
+        "images": ["images/bike-0.jpg"]
       }
     ]
   },

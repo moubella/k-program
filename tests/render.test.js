@@ -140,7 +140,9 @@ test("week 0 machines show their illustration when they have one", () => {
   withImages.week0.machines[1].images = ["images/bike-0.jpg"];
   const html = renderWeek0({ program: withImages });
   assert.ok(html.includes('<img class="frame" src="images/bike-0.jpg" alt="Exercise bike">'));
-  assert.ok(!renderWeek0({ program }).includes('class="visual'));
+  const withoutImages = structuredClone(program);
+  for (const machine of withoutImages.week0.machines) delete machine.images;
+  assert.ok(!renderWeek0({ program: withoutImages }).includes('class="visual'));
 });
 
 test("week 0 home also links to the week 1 sessions, after the cardio card", () => {
