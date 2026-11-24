@@ -53,6 +53,10 @@ test("week 0 is treadmill then bike, 15 min each", () => {
       ["Exercise bike", 15],
     ],
   );
+  assert.deepEqual(
+    program.week0.machines.map((m) => m.images),
+    [["images/treadmill-0.jpg"], ["images/bike-0.jpg"]],
+  );
 });
 
 test("phases and start date match the spec", () => {
