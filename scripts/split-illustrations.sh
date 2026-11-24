@@ -34,6 +34,8 @@ Leg Press Form_ Start to Finish.png|1 1 1535 509|leg-press-0.jpg
 Leg Press Form_ Start to Finish.png|1 515 1535 509|leg-press-1.jpg
 Lat Pulldown Form Guide.png|1 1 651 1198|lat-pulldown-0.jpg
 Lat Pulldown Form Guide.png|660 1 651 1198|lat-pulldown-1.jpg
+Treadmill Incline Walk.png|1 1 1253 1253|treadmill-0.jpg
+Exercise Bike.png|1 1 1253 1253|bike-0.jpg
 "
 
 mkdir -p "$OUT"
@@ -41,6 +43,10 @@ TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 echo "$PANELS" | while IFS='|' read -r file rect name pad; do
   [ -z "$file" ] && continue
+  if [ ! -f "$SRC/$file" ]; then
+    echo "skipped $name: $SRC/$file not found (the image already in $OUT is kept)" >&2
+    continue
+  fi
   read -r x y w h <<<"$rect"
   if [ -n "$pad" ]; then
     sips -s format bmp -c "$h" "$w" --cropOffset "$y" "$x" "$SRC/$file" --out "$TMP/panel.bmp" >/dev/null
